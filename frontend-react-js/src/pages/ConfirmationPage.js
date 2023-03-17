@@ -22,41 +22,35 @@ export default function ConfirmationPage() {
   }
 
   const resend_code = async (event) => {
-    console.log('resend_code')
-    // [TODO] Authenication
-  }
-
-  const resend_code = async (event) => {
     setErrors('')
     try {
-      await Auth.resendSignUp(email);
+    await Auth.resendSignUp(email);
       console.log('code resent successfully');
       setCodeSent(true)
-    } catch (err) {
+    }catch (err) {
       // does not return a code
       // does cognito always return english
       // for this to be an okay match?
       console.log(err)
-      if (err.message == 'Username cannot be empty'){
+    if (err.message == 'Username cannot be empty'){
         setCognitoErrors("You need to provide an email in order to send Resend Activiation Code")   
-      } else if (err.message == "Username/client id combination not found."){
+    } else if (err.message == "Username/client id combination not found."){
         setErrors("Email is invalid or cannot be found.")   
       }
     }
-  }
 
 
-  const onsubmit = async (event) => {
-    event.preventDefault();
-    setErrors('')
+    const onsubmit = async (event) => {
+      event.preventDefault();
+      setErrors('')
     try {
-      await Auth.confirmSignUp(email, code);
-      window.location.href = "/"
+    await Auth.confirmSignUp(email, code);
+        window.location.href = "/"
     } catch (error) {
-      setErrors(error.message)
-    }
+        setErrors(error.message)
+      }
     return false
-  }
+    }
 
   let el_errors;
   if (errors){
@@ -114,5 +108,5 @@ export default function ConfirmationPage() {
       </div>
       {code_button}
     </article>
-  );
-}
+  );}
+ }
