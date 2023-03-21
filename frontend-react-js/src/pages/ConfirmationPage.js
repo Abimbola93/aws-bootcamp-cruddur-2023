@@ -27,7 +27,7 @@ export default function ConfirmationPage() {
     await Auth.resendSignUp(email);
       console.log('code resent successfully');
       setCodeSent(true)
-    }catch (err) {
+    } catch (err) {
       // does not return a code
       // does cognito always return english
       // for this to be an okay match?
@@ -38,6 +38,7 @@ export default function ConfirmationPage() {
         setErrors("Email is invalid or cannot be found.")   
       }
     }
+  }
 
 
     const onsubmit = async (event) => {
@@ -108,5 +109,5 @@ export default function ConfirmationPage() {
       </div>
       {code_button}
     </article>
-  );}
- }
+  );
+} 

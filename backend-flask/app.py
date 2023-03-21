@@ -37,7 +37,7 @@ import rollbar
 import rollbar.contrib.flask
 from flask import got_request_exception
 
-# Configuring Logger to Use CloudWatch
+#Configuring Logger to Use CloudWatch
 #LOGGER = logging.getLogger(__name__)
 #LOGGER.setLevel(logging.DEBUG)
 #console_handler = logging.StreamHandler()
@@ -147,7 +147,7 @@ def data_create_message():
 
 @app.route("/api/activities/home", methods=['GET'])
 def data_home():
-  data = HomeActivities(Logger = LOGGER)
+  data = HomeActivities.run() 
   return data, 200
 
 @app.route("/api/activities/notifications", methods=['GET'])
