@@ -55,7 +55,7 @@ export default function HomeFeedPage() {
           display_name: cognito_user.attributes.name,
           handle: cognito_user.attributes.preferred_username
         })
-      })
+    })
       .catch((err) => console.log(err));
   };
 

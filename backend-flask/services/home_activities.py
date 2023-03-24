@@ -54,15 +54,15 @@ class HomeActivities:
 
     if cognito_user_id != None:
       extra_crud = {
-          'uuid': '3f108802-461f-4c72-bba1-117c2c009b49',
-          'handle':  'Lore',
-          'message': 'My dear brother, it the humans that are the problem',
-          'created_at': (now - timedelta(hours=1)).isoformat(),
-          'expires_at': (now + timedelta(hours=12)).isoformat(),
-          'likes': 1042,
-          'replies': []
-          }
-        results.insert(0,extra_crud)
+        'uuid': '3f108802-461f-4c72-bba1-117c2c009b49',
+        'handle':  'Lore',
+        'message': 'My dear brother, it the humans that are the problem',
+        'created_at': (now - timedelta(hours=1)).isoformat(),
+        'expires_at': (now + timedelta(hours=12)).isoformat(),
+        'likes': 1042,
+        'replies': []
+      }
+      results.insert(0,extra_crud)
 
-      span.set_attribute("app.result_length", len(results))
-      return results
+    span.set_attribute("app.result_length", len(results))
+    return results
