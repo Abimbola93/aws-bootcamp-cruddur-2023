@@ -1,12 +1,11 @@
 from datetime import datetime, timedelta, timezone
 from opentelemetry import trace
 
-
 tracer = trace.get_tracer("home.activities")
 
 class HomeActivities:
   def run(cognito_user_id=None):
-    #Logger.info(HomeActivities)
+    #logger.info(HomeActivities)
     with tracer.start_as_current_span("home-activities-mock-data"):
       span = trace.get_current_span()
       now = datetime.now(timezone.utc).astimezone()
@@ -15,7 +14,7 @@ class HomeActivities:
       results = [{
         'uuid': '68f126b0-1ceb-4a33-88be-d90fa7109eee',
         'handle':  'Andrew Brown',
-        'message': 'Cloud is fun!',
+        'message': 'Cloud is very fun!',
         'created_at': (now - timedelta(days=2)).isoformat(),
         'expires_at': (now + timedelta(days=5)).isoformat(),
         'likes_count': 5,
@@ -52,17 +51,17 @@ class HomeActivities:
       }
       ]
 
-    if cognito_user_id != None:
-      extra_crud = {
-        'uuid': '3f108802-461f-4c72-bba1-117c2c009b49',
-        'handle':  'Lore',
-        'message': 'My dear brother, it the humans that are the problem',
-        'created_at': (now - timedelta(hours=1)).isoformat(),
-        'expires_at': (now + timedelta(hours=12)).isoformat(),
-        'likes': 1042,
-        'replies': []
-      }
-      results.insert(0,extra_crud)
+      if cognito_user_id != None:
+        extra_crud = {
+          'uuid': '3f108802-461f-4c72-bba1-117c2c009b49',
+          'handle':  'Lore',
+          'message': 'My dear brother, it the humans that are the problem',
+          'created_at': (now - timedelta(hours=1)).isoformat(),
+          'expires_at': (now + timedelta(hours=12)).isoformat(),
+          'likes': 1042,
+          'replies': []
+        }
+        results.insert(0,extra_crud)
 
     span.set_attribute("app.result_length", len(results))
     return results
